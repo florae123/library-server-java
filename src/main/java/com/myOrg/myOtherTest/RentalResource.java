@@ -1,0 +1,168 @@
+package com.myOrg.myOtherTest;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
+import org.json.JSONObject;
+
+import com.cloudant.client.api.Database;
+
+import javax.ws.rs.core.Response.Status;
+
+
+
+@Path("/rentals")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class RentalResource {
+	
+	//ConcurrentHashMap<String, Rental> rentals = new ConcurrentHashMap<String,Rental>();
+	
+	private static Database dbRentals = Testdb.getDB("rentals");
+	
+	@GET
+	public RentalShow[] getInformation(@Context UriInfo uriInfo) throws Exception, IOException {   
+    	try {
+			Collection<Rental> allRentals = dbRentals.getAllDocsRequestBuilder().includeDocs(true).build()
+					.getResponse().getDocsAs(Rental.class);
+			for(Rental temp : allRentals){
+				System.out.println("Rental id: "+temp.getId()+" Book: "+temp.getBookid());
+			}
+			RentalShow[] toShow = new RentalShow[allRentals.size()];
+			Iterator<Rental> it = allRentals.iterator();
+			int i=0;
+			while(it.hasNext()){
+				Rental current = it.next();
+				
+			    URI uribook = URI.create(uriInfo.getBaseUri().toString() + "books/"
+						+ current.getBookid());
+			    System.out.println("uri book: "+uribook.toString());
+			    URI uricustomer = URI.create(uriInfo.getBaseUri().toString() + "customers/"
+						+ current.getCustomerid());
+				System.out.println("uri customer: "+uricustomer.toString());
+				RentalShow temp = new RentalShow(current.getId(),uribook.toString(),uricustomer.toString(),current.getStart(),current.getEnd());
+				toShow[i]=temp;
+				i++;
+			}
+			return toShow;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("/{id}")
+	@GET
+	public RentalShow showRental(@PathParam("id") String id, @Context UriInfo uriInfo){
+		if(dbRentals.contains(id)){	
+			Rental myrental= dbRentals.find(Rental.class, id);
+		    URI uribook = URI.create(uriInfo.getBaseUri().toString() + "books/"
+					+ myrental.getBookid());
+			URI uricustomer = URI.create(uriInfo.getBaseUri().toString() + "customers/"
+					+ myrental.getCustomerid());    
+		    RentalShow forshow = new RentalShow(id,uribook.toString(),uricustomer.toString(),myrental.getStart(),myrental.getEnd());
+			return forshow;
+		}	
+		else{
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+	}
+	
+	
+	//Creates a new rental
+	@POST
+	public Response createRental(Rental rental,  @Context UriInfo uriInfo){
+		//if bookid and customerid exist
+		Database bookdb = Testdb.getDB("books");
+		Database customerdb = Testdb.getDB("customers");
+		if(bookdb.contains(rental.getBookid()) && customerdb.contains(rental.getCustomerid())){
+			String newID = UUID.randomUUID().toString();
+			rental.setId(newID);
+			dbRentals.save(rental);
+			System.out.println("The rental "+rental.getId()+" has been created.");
+			
+			URI uri = URI.create(uriInfo.getBaseUri().toString() + "rentals/"
+					+ rental.getId());
+		    System.out.println(uri.toString());
+			return Response.created(uri).build();
+		}else{
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+	}
+	
+	
+	//Update rental
+	@Path("/{id}")
+	@PUT
+	public Rental updateRental(@PathParam("id") String id, Rental rental,  @Context UriInfo uriInfo){
+		if(dbRentals.contains(id)){
+			if(rental.getId().equals(id)){
+				Rental indb = dbRentals.find(Rental.class, id);
+				indb.setBookid(rental.getBookid());
+				indb.setCustomerid(rental.getCustomerid());
+				indb.setStart(rental.getStart());
+				indb.setEnd(rental.getEnd());
+				dbRentals.update(indb);
+				System.out.println("The rental "+id+" has been updated.");
+				return indb;
+			} else{
+				throw new WebApplicationException(Status.CONFLICT);
+			}		
+		}else{
+			throw new WebApplicationException(Status.NOT_FOUND);	
+		}
+		
+	}
+
+	@DELETE
+	public void deleteAll(){
+	   	try {
+			Collection<Rental> allRentals = dbRentals.getAllDocsRequestBuilder().includeDocs(true).build()
+					.getResponse().getDocsAs(Rental.class);
+			for(Rental temp : allRentals){
+				dbRentals.remove(temp);
+				System.out.println("Rental "+temp.getId()+" has been deleted.");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Path("/{id}")
+	@DELETE
+	public void deleteRental(@PathParam("id") String id){
+		if(dbRentals.contains(id)){
+			Rental todelete = dbRentals.find(Rental.class, id);
+			dbRentals.remove(todelete);
+			System.out.println("Customer "+id+" has been deleted.");
+		}	
+		else{
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+	}
+	
+	
+}
+	
