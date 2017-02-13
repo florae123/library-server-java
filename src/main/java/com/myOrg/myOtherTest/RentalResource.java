@@ -2,6 +2,7 @@ package com.myOrg.myOtherTest;
 
 import java.io.IOException;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,14 +41,16 @@ public class RentalResource {
 	
 	private static Database dbRentals = Testdb.getDB("rentals");
 	
+	private static SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+	
 	@GET
 	public RentalShow[] getInformation(@Context UriInfo uriInfo) throws Exception, IOException {   
     	try {
 			Collection<Rental> allRentals = dbRentals.getAllDocsRequestBuilder().includeDocs(true).build()
 					.getResponse().getDocsAs(Rental.class);
-			for(Rental temp : allRentals){
+			/*for(Rental temp : allRentals){
 				System.out.println("Rental id: "+temp.getId()+" Book: "+temp.getBookid());
-			}
+			}*/
 			RentalShow[] toShow = new RentalShow[allRentals.size()];
 			Iterator<Rental> it = allRentals.iterator();
 			int i=0;
@@ -56,11 +59,13 @@ public class RentalResource {
 				
 			    URI uribook = URI.create(uriInfo.getBaseUri().toString() + "books/"
 						+ current.getBookid());
-			    System.out.println("uri book: "+uribook.toString());
+			    //System.out.println("uri book: "+uribook.toString());
 			    URI uricustomer = URI.create(uriInfo.getBaseUri().toString() + "customers/"
 						+ current.getCustomerid());
-				System.out.println("uri customer: "+uricustomer.toString());
-				RentalShow temp = new RentalShow(current.getId(),uribook.toString(),uricustomer.toString(),current.getStart(),current.getEnd());
+				//System.out.println("uri customer: "+uricustomer.toString());
+				String startFormat = dt.format(current.getStart());
+				String endFormat = dt.format(current.getEnd());
+				RentalShow temp = new RentalShow(current.getId(),uribook.toString(),uricustomer.toString(),startFormat,endFormat);
 				toShow[i]=temp;
 				i++;
 			}
@@ -80,8 +85,10 @@ public class RentalResource {
 		    URI uribook = URI.create(uriInfo.getBaseUri().toString() + "books/"
 					+ myrental.getBookid());
 			URI uricustomer = URI.create(uriInfo.getBaseUri().toString() + "customers/"
-					+ myrental.getCustomerid());    
-		    RentalShow forshow = new RentalShow(id,uribook.toString(),uricustomer.toString(),myrental.getStart(),myrental.getEnd());
+					+ myrental.getCustomerid());  
+			String startFormat = dt.format(myrental.getStart());
+			String endFormat = dt.format(myrental.getEnd());
+		    RentalShow forshow = new RentalShow(id,uribook.toString(),uricustomer.toString(),startFormat,endFormat);
 			return forshow;
 		}	
 		else{
@@ -104,7 +111,7 @@ public class RentalResource {
 			
 			URI uri = URI.create(uriInfo.getBaseUri().toString() + "rentals/"
 					+ rental.getId());
-		    System.out.println(uri.toString());
+		    //System.out.println(uri.toString());
 			return Response.created(uri).build();
 		}else{
 			throw new WebApplicationException(Status.NOT_FOUND);
@@ -156,7 +163,7 @@ public class RentalResource {
 		if(dbRentals.contains(id)){
 			Rental todelete = dbRentals.find(Rental.class, id);
 			dbRentals.remove(todelete);
-			System.out.println("Customer "+id+" has been deleted.");
+			System.out.println("Rental "+id+" has been deleted.");
 		}	
 		else{
 			throw new WebApplicationException(Status.NOT_FOUND);

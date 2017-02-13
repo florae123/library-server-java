@@ -46,6 +46,11 @@
     		<artifactId>guava</artifactId>
     		<version>21.0</version>
     	</dependency>
+    	<dependency>
+    		<groupId>com.ibm.watson.developer_cloud</groupId>
+    		<artifactId>text-to-speech</artifactId>
+    		<version>3.5.3</version>
+    	</dependency>
   </dependencies>
 
   <build>

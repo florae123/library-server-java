@@ -64,11 +64,22 @@ public class Conversation{
 		//System.out.println("Response: "+response);
 		//add appropriate books to response, if action select_books required
 		Map<String, Object> output = response.getOutput();
+		//output.put("selected_books", null);
 		if(output.containsKey("action")){
 			System.out.println(output.get("action")+" "+output.get("action_param"));
 			if(output.get("action").equals("select_books")){
 				List<Book> selectedBooks = BookResource.getRelevantBooks((String) output.get("action_param"));
 				output.put("selected_books", selectedBooks);
+			}
+			if(output.get("action").equals("search_title")){
+				System.out.println("searching by title...");
+				List<Book> titledBooks = BookResource.getBooksByTitle((String) output.get("action_param"));
+				output.put("books_by_title", titledBooks);
+				if(titledBooks.isEmpty()){
+					String noResp = "Sorry there is no book in the library titled "+output.get("action_param");
+					output.put("text", noResp);
+				}
+				//output.get("text").get("values").
 			}
 		}
 		return response;
@@ -90,8 +101,26 @@ public class Conversation{
 		Map<String,Object> initContext = responseinit.getContext();
 		System.out.println("Responseinit: "+responseinit);
 		
+		MessageRequest othermessage = new MessageRequest.Builder()
+				.inputText("I need a book called Blink.").context(initContext)
+				.build();
+		
+		MessageResponse otherresp = service
+				.message(workspaceId, othermessage)
+				.execute();
+		System.out.println(otherresp);
+		System.out.println(otherresp.getText());
+		String noResp = "Sorry there is no book in the library titled "+"Blink";
+		Map<String, Object> output = otherresp.getOutput();
+		output.put("text", noResp);
+		System.out.println(otherresp);
+		//otherresp.setOutput(output);
+		
+		List<Book> titledBooks = BookResource.getBooksByTitle("Blink");
 	
-	
+		for(Book temp : titledBooks){
+			System.out.println(temp.getTitle());
+		}
 		//MessageResponse response = getResponse("I need a scifi book.", responseinit);
 		//System.out.println(getOutputText(response));
 		//System.out.println(response);

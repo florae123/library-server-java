@@ -46,7 +46,6 @@ public class CustomerResource {
 		return dbCustomers;
 	}
 	
-	static ConcurrentHashMap<String, Customer> customers = new ConcurrentHashMap<String,Customer>();
 	
 	@GET
 	public Collection<Customer> getInformation() throws Exception, IOException {     
@@ -55,9 +54,9 @@ public class CustomerResource {
     	try {
 			Collection<Customer> allCustomers = dbCustomers.getAllDocsRequestBuilder().includeDocs(true).build()
 					.getResponse().getDocsAs(Customer.class);
-			for(Customer temp : allCustomers){
+			/**for(Customer temp : allCustomers){
 				System.out.println("CustomerId: "+temp.getId()+" Name: "+temp.getName());
-			}
+			}*/
 			return allCustomers;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

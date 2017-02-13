@@ -1,5 +1,7 @@
 package com.myOrg.myOtherTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RentalShow{
@@ -12,24 +14,26 @@ public class RentalShow{
 	private String _id;
 	private String _rev;
 	
+	private static SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+	
 	public RentalShow(){
 	}
-	public RentalShow(String id, String bookuri, String customeruri, Date start, Date end){
+	public RentalShow(String id, String bookuri, String customeruri, String start, String end){
 		this.id = id;
 		this._id=id;
 		this.bookuri = bookuri;
 		this.customeruri = customeruri;
-		this.start = start.toString();
-		this.end = end.toString();
+		this.start = start;
+		this.end = end;
 	}
-	public RentalShow(String id, String _id, String _rev, String bookuri, String customeruri, Date start, Date end){
+	public RentalShow(String id, String _id, String _rev, String bookuri, String customeruri, String start, String end){
 		this.id = id;
 		this._id=_id;
 		this._rev = _rev;
 		this.bookuri = bookuri;
 		this.customeruri = customeruri;
-		this.start = start.toString();
-		this.end = end.toString();
+		this.start = start;
+		this.end = end;
 	}
 	
 	public String getId() {

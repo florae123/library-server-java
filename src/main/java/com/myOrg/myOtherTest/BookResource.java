@@ -30,7 +30,7 @@ import javax.ws.rs.core.Response.Status;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
-
+import com.cloudant.client.api.Search;
 //import com.cloudant.client.org.lightcouch.CouchDbException;
 import com.cloudant.client.api.model.SearchResult;
 import com.cloudant.client.api.views.Key;
@@ -88,9 +88,14 @@ public class BookResource {
     	try {
 			Collection<Book> allBooks = datab.getAllDocsRequestBuilder().includeDocs(true).build()
 					.getResponse().getDocsAs(Book.class);
+			LinkedList<Book> removeable = new LinkedList<Book>();
 			for(Book temp : allBooks){
 				//System.out.println("Bookid: "+temp.getId()+" Title: "+temp.getTitle());
+				if(temp.getId()==null){
+					removeable.add(temp);
+				}
 			}
+			allBooks.removeAll(removeable);
 			return allBooks;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -99,6 +104,16 @@ public class BookResource {
 		}
 	}
 	
+	/**
+	 * The mapfunction of view tagView:
+	 * function (doc) {
+  		var i;
+  		for(i in doc.tags)
+    		emit(doc.tags[i], doc._id)
+		}
+	 * @param tag
+	 * @return
+	 */
 	public static List<Book> getRelevantBooks(String tag){
 		initDatabase();
 		List<Book> list = null;
@@ -118,6 +133,14 @@ public class BookResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return list;
+	}
+	public static List<Book> getBooksByTitle(String title){
+		initDatabase();
+		List<Book> list = null;
+		Search searchObject = datab.search("SearchIdx/titleSearch");
+		list = searchObject.includeDocs(true).query(title, Book.class);
+		System.out.println(list);
 		return list;
 	}
 	
@@ -152,9 +175,10 @@ public class BookResource {
 			// Allow one request per second
 			RateLimiter throttle = RateLimiter.create(9.0);
 			for(Book temp : allBooks){
-				removeBook(temp, throttle);
-				//datab.remove(temp);
-				System.out.println("Book "+temp.getId()+" has been deleted.");
+				if(!(temp.getId()==null)){
+					removeBook(temp, throttle);
+				}
+				//System.out.println("Book "+temp.getId()+" has been deleted.");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
