@@ -12,6 +12,7 @@ public class Book{
 	private String _rev;
 	private Collection<String> tags;
 	private String picture;
+	private String about_the_book;
 
 	public Book(){
 		
@@ -87,6 +88,14 @@ public class Book{
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getAbout_the_book() {
+		return about_the_book;
+	}
+
+	public void setAbout_the_book(String about_the_book) {
+		this.about_the_book = about_the_book;
 	}
 
 	
