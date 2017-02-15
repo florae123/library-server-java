@@ -116,7 +116,7 @@ public class BookResource {
 	 */
 	@Path("/tag-search/{tag}")
 	@GET
-	public static List<Book> getRelevantBooks(@PathParam("tag") String tag){
+	public List<Book> getRelevantBooks(@PathParam("tag") String tag){
 		initDatabase();
 		List<Book> list = null;
 		ViewRequestBuilder viewBuilder = datab.getViewRequestBuilder("SecIndex", "tagView");
@@ -139,7 +139,7 @@ public class BookResource {
 	}
 	@Path("/title/{title}")
 	@GET
-	public static List<Book> getBooksByTitle(@PathParam("title") String title){
+	public List<Book> getBooksByTitle(@PathParam("title") String title){
 		initDatabase();
 		List<Book> list = null;
 		Search searchObject = datab.search("SearchIdx/titleSearch");

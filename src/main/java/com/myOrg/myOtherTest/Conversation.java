@@ -47,7 +47,7 @@ public class Conversation{
 		return response;
 	}
 	
-	@PUT
+	/*@PUT
 	//public MessageResponse getResponse(String userInput, MessageResponse lastResponse){
 	public MessageResponse getResponse(Map<String,Object> userhelp){
 		String userInput = (String) userhelp.get("user_input");
@@ -157,5 +157,5 @@ public class Conversation{
 				System.out.println("Response2: "+response2);*/
 //	}
 
-	}
+	
 }
