@@ -1,4 +1,4 @@
-/target/
-/src/main/java/com/myOrg/myOtherTest/Conversation.java
-/src/main/java/com/myOrg/myOtherTest/Text_To_Speech.java
+target/
+src/main/java/com/myOrg/myOtherTest/Conversation.java
+src/main/java/com/myOrg/myOtherTest/Text_To_Speech.java
 VCAP_SERVICES.json
