@@ -41,24 +41,24 @@ import com.google.common.util.concurrent.RateLimiter;
 
 
 
-// This class define the RESTful API to fetch the database service information
+// This class defines the RESTful API to fetch the database service information
 // <basepath>/api/books
 
-//everything using cloudant is a comment except in getInformation()
+
 
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class BookResource {
 	
-	//static ConcurrentHashMap<String, Book> bookmap = new ConcurrentHashMap<String, Book>();
+
 	
 	private static Database datab = null;
 	
 	private static Database initDatabase(){
 		if(datab==null){
 			try {
-				datab = Testdb.getDB("books");
+				datab = DBManager.getDB("books");
 			} catch (Exception re) {
 				re.printStackTrace();
 			}
@@ -66,22 +66,10 @@ public class BookResource {
 		return datab;
 	}
 	
-	
-	/**public ConcurrentHashMap<String, Book> getBookmap(){
-		return BookResource.bookmap;
-	}*/
-	
-	//private static CloudantClient cloudant = null;
-	//private static Database db = null;
-	//private static String user = "81521cc0-3ee9-4938-a300-17d01c412388-bluemix";
-	//private static String password = "3eb24addf758dcc8bc5ad6e25991e93f5345d19a27a1703eb26ff35088e0fb02";
-	
 
 	
 	@GET
 	public Collection<Book> getInformation() throws Exception, IOException {
-		
-        //return bookmap.values();
        
 		initDatabase();
 		
@@ -221,14 +209,6 @@ public class BookResource {
 	@Path("/{id}")
 	@PUT
 	public Book updateBook(@PathParam("id") String id, Book updated){
-		/**if(bookmap.containsKey(id)){
-			if(updated.getId().equals(id)){
-				bookmap.put(id, updated);
-				System.out.println("The book "+id+" has been updated.");
-				return updated;
-			} else{
-				throw new WebApplicationException(Status.CONFLICT);
-			}*/
 		initDatabase();
 		if(datab.contains(id)){
 			if(updated.getId().equals(id)){
@@ -253,8 +233,6 @@ public class BookResource {
 	public Response createBook(Book newBook,  @Context UriInfo uriInfo){
 		String newID = UUID.randomUUID().toString();
 		newBook.setId(newID);
-		
-		//bookmap.put(newBook.getId(), newBook);
 		
 		initDatabase();
 

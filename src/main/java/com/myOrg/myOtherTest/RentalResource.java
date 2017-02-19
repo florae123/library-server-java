@@ -37,9 +37,7 @@ import javax.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 public class RentalResource {
 	
-	//ConcurrentHashMap<String, Rental> rentals = new ConcurrentHashMap<String,Rental>();
-	
-	private static Database dbRentals = Testdb.getDB("rentals");
+	private static Database dbRentals = DBManager.getDB("rentals");
 	
 	private static SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -48,9 +46,6 @@ public class RentalResource {
     	try {
 			Collection<Rental> allRentals = dbRentals.getAllDocsRequestBuilder().includeDocs(true).build()
 					.getResponse().getDocsAs(Rental.class);
-			/*for(Rental temp : allRentals){
-				System.out.println("Rental id: "+temp.getId()+" Book: "+temp.getBookid());
-			}*/
 			RentalShow[] toShow = new RentalShow[allRentals.size()];
 			Iterator<Rental> it = allRentals.iterator();
 			int i=0;
@@ -101,8 +96,8 @@ public class RentalResource {
 	@POST
 	public Response createRental(Rental rental,  @Context UriInfo uriInfo){
 		//if bookid and customerid exist
-		Database bookdb = Testdb.getDB("books");
-		Database customerdb = Testdb.getDB("customers");
+		Database bookdb = DBManager.getDB("books");
+		Database customerdb = DBManager.getDB("customers");
 		if(bookdb.contains(rental.getBookid()) && customerdb.contains(rental.getCustomerid())){
 			String newID = UUID.randomUUID().toString();
 			rental.setId(newID);

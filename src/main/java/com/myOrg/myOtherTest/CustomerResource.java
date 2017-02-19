@@ -38,7 +38,7 @@ public class CustomerResource {
 	private static Database initDatabasec(){
 		if(dbCustomers==null){
 			try {
-				dbCustomers = Testdb.getDB("customers");
+				dbCustomers = DBManager.getDB("customers");
 			} catch (Exception re) {
 				re.printStackTrace();
 			}
@@ -49,7 +49,6 @@ public class CustomerResource {
 	
 	@GET
 	public Collection<Customer> getInformation() throws Exception, IOException {     
-        //return customers.values(); 
 		initDatabasec();
     	try {
 			Collection<Customer> allCustomers = dbCustomers.getAllDocsRequestBuilder().includeDocs(true).build()
@@ -84,7 +83,6 @@ public class CustomerResource {
 	
 	@DELETE
 	public void deleteAll(){
-		//customers.clear();
 		initDatabasec();
 	   	try {
 			Collection<Customer> allCustomers = dbCustomers.getAllDocsRequestBuilder().includeDocs(true).build()
@@ -102,8 +100,6 @@ public class CustomerResource {
 	@Path("/{id}")
 	@DELETE
 	public void deleteCustomer(@PathParam("id") String id){
-		/**if(customers.containsKey(id)){
-			customers.remove(id);	*/
 		initDatabasec();
 		if(dbCustomers.contains(id)){
 			Customer todelete = dbCustomers.find(Customer.class, id);
@@ -120,7 +116,6 @@ public class CustomerResource {
 	public Response createCustomer(Customer customer,  @Context UriInfo uriInfo){
 		String newID = UUID.randomUUID().toString();
 		customer.setId(newID);
-		//customers.put(customer.getId(), customer);
 		initDatabasec();
 		dbCustomers.save(customer);
 		System.out.println("The customer "+customer.getId()+" has been created.");
@@ -135,11 +130,9 @@ public class CustomerResource {
 	@Path("/{id}")
 	@PUT
 	public Customer updateCustomer(@PathParam("id") String id, Customer customer){
-		//if(customers.containsKey(id)){
 		initDatabasec();
 		if(dbCustomers.contains(id)){
 			if(customer.getId().equals(id)){
-				//customers.put(id, customer);
 				Customer indb = dbCustomers.find(Customer.class, id);
 				indb.setName(customer.getName());
 				indb.setEmail(customer.getEmail());
