@@ -22,7 +22,7 @@ public class DBManager {
 	private static CloudantClient cloudant = null;
 	private static Database db = null;
 	
-	private static final String FILENAME = "C:\\dev\\src\\myOtherTest\\VCAP_SERVICES.json";
+	private static final String FILENAME = "C:\\dev\\src\\myOtherTest\\vcap-env.json";
 	
 	private static String user;
 	private static String password;
