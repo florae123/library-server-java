@@ -3,3 +3,4 @@ src/main/java/com/myOrg/myOtherTest/Conversation.java
 src/main/java/com/myOrg/myOtherTest/Text_To_Speech.java
 src/main/java/com/myOrg/myOtherTest/BasicAuthInterceptor.java
 vcap-env.json 
+/.apt_generated/

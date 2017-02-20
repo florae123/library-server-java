@@ -1,4 +1,4 @@
-package com.myOrg.myOtherTest;
+package com.example.library;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

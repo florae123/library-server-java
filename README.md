@@ -10,6 +10,11 @@ Requires a Cloudant NoSQL Database.
   ```
   git clone https://github.com/florae123/library-server-java.git
   ```
+2. Execute full Maven build to create the target/name.war file:
+
+  ```
+  $ mvn clean install
+  ``` 
   
 2. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
   ```
@@ -18,7 +23,7 @@ Requires a Cloudant NoSQL Database.
 
 3. Push the app to Bluemix using the cf cli command
   ```
-  cf push MyName  
+  cf push MyName -p target/name.war
   ```
 4. Instantiate a Cloudant NoSQL Database on Bluemix and connect it to your app. 
   

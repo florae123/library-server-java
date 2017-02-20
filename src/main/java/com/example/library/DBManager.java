@@ -1,4 +1,4 @@
-package com.myOrg.myOtherTest;
+package com.example.library;
 
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;

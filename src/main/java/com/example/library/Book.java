@@ -1,4 +1,4 @@
-package com.myOrg.myOtherTest;
+package com.example.library;
 
 import java.util.Collection;
 

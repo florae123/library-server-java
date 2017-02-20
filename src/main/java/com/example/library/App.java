@@ -18,7 +18,7 @@
  *  limitations under the License.
  */
 
-package com.myOrg.myOtherTest;
+package com.example.library;
 
 
 
