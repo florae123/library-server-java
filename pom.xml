@@ -13,12 +13,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
   
-  <groupId>com.myOrg</groupId>
-  <artifactId>myOtherTest</artifactId>
+  <groupId>com.example</groupId>
+  <artifactId>library-server-java</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>myOtherTest</name>
+  <name>library-server-java</name>
 
   <dependencies>
     	<dependency>
