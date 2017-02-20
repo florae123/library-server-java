@@ -45,6 +45,7 @@ public class App extends Application {
 	public Set<Object> getSingletons() {
 		Set<Object> singletons = new HashSet<Object>();
 		// this is the application resource, declared as a singleton
+		singletons.add(new DBManager());
 		singletons.add(new BookResource());
 		singletons.add(new CustomerResource());
 		singletons.add(new RentalResource());
