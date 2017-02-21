@@ -32,6 +32,7 @@ Requires a Cloudant NoSQL Database.
 The App requires three databases in your Cloudant service.
 
 1. Create a database called **"books"**. A book should be saved as a JSON in the following format:
+  ```
 	{
 	  "_id": "...",
 	  "_rev": "...",
@@ -47,9 +48,11 @@ The App requires three databases in your Cloudant service.
 	  "picture": "the book's cover",
 	  "about_the_book": "a description to be read by Text to Speech"
 	}
+  ```
 
 
 2. Create a database called **"customers"**. A customer should be saved as a JSON in the following format:
+  ```
 	{
 	  "_id": "the customer's id"
 	  "name": "the customer's name",
@@ -57,8 +60,10 @@ The App requires three databases in your Cloudant service.
 	  "password": "the customer's password",
 	  "id": "must be the same as _id"
 	}
+  ```
 
 3. Create a database called **"rentals"**. Whenever a book is borrowed, it is registered in "rentals". A rental should be saved as a JSON in the following format:
+  ```
   {
     "_id": "the rental's id",
     "_rev": "...",
@@ -68,3 +73,4 @@ The App requires three databases in your Cloudant service.
     "start": "Mar 3, 2017 12:00:00 AM",
     "end": "May 4, 2017 12:00:00 AM"
   }
+  ```
