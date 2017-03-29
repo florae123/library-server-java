@@ -16,23 +16,23 @@ Requires a Cloudant NoSQL Database.
   mvn clean install
   ```
 
-2. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
+3. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
   ```
   cf login
   ```
 
-3. Push the app to Bluemix using the cf cli command
+4. Push the app to Bluemix using the cf cli command
   ```
   cf push MyName -p target/name.war
   ```
-4. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
+5. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 
 ## Deploy to Bluemix using Eclipse
 
 The software needed for following these steps:
-Java SE 8 (JDK)
-Eclipse Neon
-IBM Eclipse tools for Bluemix
+Java SE 8 (JDK),
+Eclipse Neon,
+IBM Eclipse tools for Bluemix,
 Cloud Foundry Command Line Interface
 
 ### Install the Bluemix plugin
