@@ -31,7 +31,7 @@ Requires a Cloudant NoSQL Database.
       cf push MyName -p target/library-server-java.war
       ```
 5. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
-See [Configure Databases](##Configure-Databases).
+See [Configure Databases](#Configure-Databases).
 
 ## Deploy to Bluemix using Eclipse
 
