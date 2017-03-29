@@ -29,7 +29,15 @@ Requires a Cloudant NoSQL Database.
 
 ## Deploy to Bluemix using Eclipse
 
-### Install the required plugins.
+The software needed for following these steps:
+Java SE 8 (JDK)
+Eclipse Neon
+IBM Eclipse tools for Bluemix
+Cloud Foundry Command Line Interface
+
+### Install the Bluemix plugin
+
+To install the IBM Eclipse tools for Bluemix, launch Eclipse and click **Help > Eclipse Marketplace...**. Type *Bluemix* into the search panel and select **IBM Eclipse Tools for Bluemix for Neon**. Click **Install**, confirm the defaults, accept the license agreements and click **Finish**.
 
 ### Configure a server
 
@@ -48,7 +56,19 @@ For every organization and space in Bluemix, one server is necessary. So, if you
 
 6. Open the **Servers** view in Eclipse. You may need to click **Window > Show View > Servers**. You will now see your recently configured server.
 
-### next steps
+### Add the application to your workspace
+
+1. Clone the app to your local environment from your terminal using the following command
+
+  ```
+  git clone https://github.com/florae123/library-server-java.git
+  ```
+
+2. In Eclipse, click **File > Import**. Then select **General > Existing Projects into Workspace**. Click **Next**.
+
+3. Choose **Select root directory** and your downloaded directory *library-server-java*.
+
+### Deploy the application to Bluemix
 
 ## Configure Databases
 
