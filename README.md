@@ -81,10 +81,9 @@ For every organization and space in Bluemix, one server is necessary. So, if you
 
 ### Deploy the application to Bluemix
 
-1. Right click on the  Bluemix Server, click **Add and Remove**. Select the *library-server-java* project from the *Available* column and click **Add**
+1. Right click on the  Bluemix Server, click **Add and Remove**. Select the *library-server-java* project from the *Available* column and click **Add**. Click **Finish**.
 
-right click on server, add and remove, selevt project rfrom left column, click add, (available and cofigured cloumn)
-select services to bind to the application  // services selection either now cloudant or later in browser
+2. Choose a unique name for you application and click **Finish**.
 
 ## Configure Databases
 
