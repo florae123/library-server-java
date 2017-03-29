@@ -85,32 +85,32 @@ select services to bind to the application  // services selection either now clo
 The App requires three databases in your Cloudant service.
 
 1. Create a database called **"books"**. A book should be saved as a JSON in the following format:
-  ```
-	{
-	  "_id": "...",
-	  "_rev": "...",
-	  "id": "id must be the same as _id",
-	  "isbn": "the book's isbn",
-	  "authors": [
-	    "the book's author"
-	  ],
-	  "title": "bookTitle",
-	  "tags": [
-	    "Keywords", "that match", "the book"
-	  ],
-	  "picture": "the book's cover",
-	  "about_the_book": "a description to be read by Text to Speech"
-	}
-  ```
+      ```
+    	{
+    	  "_id": "...",
+    	  "_rev": "...",
+    	  "id": "id must be the same as _id",
+    	  "isbn": "the book's isbn",
+    	  "authors": [
+    	    "the book's author"
+    	  ],
+    	  "title": "bookTitle",
+    	  "tags": [
+    	    "Keywords", "that match", "the book"
+    	  ],
+    	  "picture": "the book's cover",
+    	  "about_the_book": "a description to be read by Text to Speech"
+    	}
+      ```
 
     In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking on the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
     Click on **"New Search Index"** and configure the search index like this:
 
-  ![SearchIndex](./images/searchIndex.png)
+    ![SearchIndex](./images/searchIndex.png)
 
     Then click on **"New View"** and configure the view like this:
 
-  ![View](./images/view.png)
+    ![View](./images/view.png)
 
 2. Create a database called **"customers"**. A customer should be saved as a JSON in the following format:
   ```
