@@ -82,6 +82,11 @@ select services to bind to the application  // services selection either now clo
 
 ## Configure Databases
 
+Create an instance of a cloudant database on Bluemix, in the same space you were using for the application.
+* Select **Cloudant NoSQL DB** in the Bluemix Catalog in your Browser and click **Create**. You will be directed to a view of the service.
+* To bind this DB to the java application, open the **Connections** panel, and click **Create Connection** and select the java library server.
+* Go back to the **Manage** panel and click **Launch**.
+
 The App requires three databases in your Cloudant service.
 
 1. Create a database called **"books"**. A book should be saved as a JSON in the following format:
