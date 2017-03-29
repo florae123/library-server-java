@@ -104,6 +104,12 @@ The App requires three databases in your Cloudant service.
     	}
       ```
 
+    There are some sample documents in this format in the *sample-books* folder in this directory. To include any of these books in your database:
+    * Click on the database **books** and then click the **+** sign next to **All Documents**.
+    * Select **New Doc**.
+    * Delete the default *{ "id_": "..." }* and copy the text in one of the json files into the document.
+    * Click **Create Document**.
+
     In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
     Click **"New Search Index"** and configure the search index like this:
 
