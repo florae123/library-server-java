@@ -7,9 +7,9 @@ Requires a Cloudant NoSQL Database.
 
 1. Clone the app to your local environment from your terminal using the following command
 
-  ```
-  git clone https://github.com/florae123/library-server-java.git
-  ```
+      ```
+      git clone https://github.com/florae123/library-server-java.git
+      ```
 2.  Execute full Maven build to create the target/name.war file:
 
       ```
@@ -19,17 +19,18 @@ Requires a Cloudant NoSQL Database.
       or use Eclipse to build the Maven project:
       * Launch Eclipse, Click **File > Import**. Then select **General > Existing Projects into Workspace**. Click **Next**.
       * Choose **Select root directory** and your downloaded directory *library-server-java*.
-      * Right-click on your *library-server-java* project folder and select **Run As > Maven install**. The *.war* file will be created in the *target* directory.
+      * Right-click your *library-server-java* project folder in Eclipse and select **Run As > Maven install**. The *.war* file will be created in the *target* directory.
 
 3. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
-  ```
-  cf login
-  ```
+      ```
+      cf login
+      ```
 
 4. Push the app to Bluemix using the cf cli command
-  ```
-  cf push MyName -p target/library-server-java.war
-  ```
+      ```
+      cf push MyName -p target/library-server-java.war
+      ```
+      
 5. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 
 ## Deploy to Bluemix using Eclipse
