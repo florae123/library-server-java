@@ -3,6 +3,17 @@ A java server for a Library app.
 
 Requires a Cloudant NoSQL Database.
 
+## Prerequisites
+
+The software needed for the following steps:
+* Java SE 8 (JDK),
+* Eclipse Neon (another option is Maven),
+* Cloud Foundry Command Line Interface [Download here]((https://github.com/cloudfoundry/cli/releases),
+* Git tool [Download here](https://git-scm.com/downloads),
+* IBM Eclipse tools for Bluemix (optional)
+
+Another requirement is an IBM Bluemix Account.
+
 ## Deploy to Bluemix
 
 1. Clone the app to your local environment from your terminal using the following command
@@ -34,12 +45,6 @@ Requires a Cloudant NoSQL Database.
 See [Configure Databases](#configure-databases).
 
 ## Deploy to Bluemix using Eclipse
-
-The software needed for following these steps:
-Java SE 8 (JDK),
-Eclipse Neon,
-IBM Eclipse tools for Bluemix,
-Cloud Foundry Command Line Interface
 
 ### Install the Bluemix plugin
 
