@@ -104,35 +104,35 @@ The App requires three databases in your Cloudant service.
     	}
       ```
 
-    In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking on the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
-    Click on **"New Search Index"** and configure the search index like this:
+    In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
+    Click **"New Search Index"** and configure the search index like this:
 
     ![SearchIndex](./images/searchIndex.png)
 
-    Then click on **"New View"** and configure the view like this:
+    Then click **"New View"** and configure the view like this:
 
     ![View](./images/view.png)
 
 2. Create a database called **"customers"**. A customer should be saved as a JSON in the following format:
-  ```
-	{
-	  "_id": "the customer's id"
-	  "name": "the customer's name",
-	  "email": "the customer's email address",
-	  "password": "the customer's password",
-	  "id": "must be the same as _id"
-	}
-  ```
+      ```
+    	{
+    	  "_id": "the customer's id"
+    	  "name": "the customer's name",
+    	  "email": "the customer's email address",
+    	  "password": "the customer's password",
+    	  "id": "must be the same as _id"
+    	}
+      ```
 
 3. Create a database called **"rentals"**. Whenever a book is borrowed, it is registered in "rentals". A rental should be saved as a JSON in the following format:
-  ```
-  {
-    "_id": "the rental's id",
-    "_rev": "...",
-    "id": "must be the same as _id",
-    "bookid": "the id of the book borrowed",
-    "customerid": "the id of the customer borrowing the book",
-    "start": "Mar 3, 2017 12:00:00 AM",
-    "end": "May 4, 2017 12:00:00 AM"
-  }
-  ```
+      ```
+      {
+        "_id": "the rental's id",
+        "_rev": "...",
+        "id": "must be the same as _id",
+        "bookid": "the id of the book borrowed",
+        "customerid": "the id of the customer borrowing the book",
+        "start": "Mar 3, 2017 12:00:00 AM",
+        "end": "May 4, 2017 12:00:00 AM"
+      }
+      ```
