@@ -85,6 +85,7 @@ select services to bind to the application  // services selection either now clo
 The App requires three databases in your Cloudant service.
 
 1. Create a database called **"books"**. A book should be saved as a JSON in the following format:
+
       ```
     	{
     	  "_id": "...",
