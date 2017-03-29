@@ -114,6 +114,7 @@ The App requires three databases in your Cloudant service.
     ![View](./images/view.png)
 
 2. Create a database called **"customers"**. A customer should be saved as a JSON in the following format:
+
       ```
     	{
     	  "_id": "the customer's id"
@@ -125,6 +126,7 @@ The App requires three databases in your Cloudant service.
       ```
 
 3. Create a database called **"rentals"**. Whenever a book is borrowed, it is registered in "rentals". A rental should be saved as a JSON in the following format:
+
       ```
       {
         "_id": "the rental's id",
