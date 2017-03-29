@@ -1,9 +1,9 @@
-#Library server
+# Library server
 A java server for a Library app.
 
 Requires a Cloudant NoSQL Database.
 
-##Deploy to Bluemix
+## Deploy to Bluemix
 
 1. Clone the app to your local environment from your terminal using the following command
 
@@ -27,7 +27,30 @@ Requires a Cloudant NoSQL Database.
   ```
 4. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 
-##Configure Databases
+## Deploy to Bluemix using Eclipse
+
+### Install the required plugins.
+
+### Configure a server
+
+To publish an Eclipse project to Bluemix, you will need to configure one or more servers in Eclipse.
+For every organization and space in Bluemix, one server is necessary. So, if you want to work with multiple spaces, you must create multiple server configurations.
+
+1. After launching Eclipse, select the Java EE perspective.
+
+2. Click **File > New > Other**, select the **Server** wizard and click **Next**.
+
+3. Select **IBM > IBM Bluemix** and name the server. Click **Next**.
+
+4. Enter the email and password for your Bluemix account. Select the URL matching the region you are using. Click **Validate Account** and then **Next**.
+
+5. Choose your organization and space and click **Finish**.
+
+6. Open the **Servers** view in Eclipse. You may need to click **Window > Show View > Servers**. You will now see your recently configured server.
+
+### next steps
+
+## Configure Databases
 
 The App requires three databases in your Cloudant service.
 
@@ -49,7 +72,7 @@ The App requires three databases in your Cloudant service.
 	  "about_the_book": "a description to be read by Text to Speech"
 	}
   ```
-  In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking on the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard. <return>
+  In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking on the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
   Click on **"New Search Index"** and configure the search index like this:
 
   ![SearchIndex](./images/searchIndex.png)
