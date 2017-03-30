@@ -49,8 +49,6 @@ public class App extends Application {
 		singletons.add(new BookResource());
 		singletons.add(new CustomerResource());
 		singletons.add(new RentalResource());
-		singletons.add(new Conversation());
-		singletons.add(new Text_To_Speech());
 		return singletons;
 	}
 }
