@@ -1,7 +1,10 @@
 # Library server
-A java server for a Library app.
+This is the first part of the Library Application:
+[https://github.com/florae123/LibraryApp](https://github.com/florae123/LibraryApp).
 
-Requires a Cloudant NoSQL Database.
+It is a java server for the Library app and requires a Cloudant NoSQL Database.
+
+![architecture](./images/lib-architecture-java.jpg)
 
 ## Prerequisites
 
@@ -29,8 +32,10 @@ Another requirement is an IBM Bluemix Account.
 
       or use Eclipse to build the Maven project:
       * Launch Eclipse, Click **File > Import**. Then select **General > Existing Projects into Workspace**. Click **Next**.
+          ![import](./images/eclipse-import-project.png)
       * Choose **Select root directory** and your downloaded directory *library-server-java*.
       * Right-click your *library-server-java* project folder in Eclipse and select **Run As > Maven install**. The *.war* file will be created in the *target* directory.
+          ![maven](./images/eclipse-maven-install.png)
 
 3. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
       ```
@@ -88,13 +93,20 @@ For every organization and space in Bluemix, one server is necessary. So, if you
 ## Configure Databases
 
 Create an instance of a cloudant database on Bluemix, in the same space you were using for the application.
-* Select **Cloudant NoSQL DB** in the Bluemix Catalog in your Browser and click **Create**. You will be directed to a view of the service.
-* To bind this DB to the java application, open the **Connections** panel, and click **Create Connection** and select the java library server.
+    ![catalog](./images/catalog-cloudant.png)
+* Select **Cloudant NoSQL DB** in the Bluemix Catalog in your Browser, make sure the *Lite* pricing plan is selected and click **Create**. You will be directed to a view of the service.
+* To bind this DB to the java application, open the **Connections** panel, and click **Create Connection**. Then select the java library server and click **Connect**.
+    ![connect](./images/connect-cloudant.png)
 * Go back to the **Manage** panel and click **Launch**.
+    ![launch](./images/cloudant-launch.png)
 
 The App requires three databases in your Cloudant service.
 
-1. Create a database called **"books"**. A book should be saved as a JSON in the following format:
+1. Create a database called **"books"**.
+
+    ![books](./images/create-books-db.png)
+
+    A book will be saved as a JSON in the following format:
 
       ```
     	{
