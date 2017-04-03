@@ -68,10 +68,10 @@ Create an instance of a cloudant database on Bluemix, in the same space you were
 * To bind this DB to the java application, open the **Connections** panel, and click **Create Connection**. Then select the java library server and click **Connect**.
     ![connect](./images/connect-cloudant.png)
 
-    You do not need to integrate the service credentials of the Cloudant Service instance into your code to access your databases. By connecting the service to the cloud foundry application, the app's **VCAP_VARIABLES** will be updated. These VCAP_VARIABLES are used in the java code to retrieve the service instance's credentials.
+    You do not need to integrate the service credentials of the Cloudant Service instance into your code to access your databases. By connecting the service to the cloud foundry application, the app's environment variables, the **VCAP_SERVICES**, will be updated. These VCAP_SERVICES are used in the java code to retrieve the service instance's credentials.
 
     ![VCAP_VARIABLES](./images/vcap.png)
-    
+
 * Go back to the **Manage** panel and click **Launch**.
     ![launch](./images/cloudant-launch.png)
 
