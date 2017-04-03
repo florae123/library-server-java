@@ -38,8 +38,6 @@ public class DBManager {
 			user = cred.getString("username");
 			password = cred.getString("password");
 		} else {
-			//user = "81521cc0-3ee9-4938-a300-17d01c412388-bluemix";
-			//password = "3eb24addf758dcc8bc5ad6e25991e93f5345d19a27a1703eb26ff35088e0fb02";
 			try {
 				String content = new String(Files.readAllBytes(Paths.get(FILENAME)));
 				System.out.println(content);

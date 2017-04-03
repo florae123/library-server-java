@@ -41,6 +41,7 @@ Another requirement is an IBM Bluemix Account.
     * US https://api.ng.bluemix.net or
     * EU-GB https://api.eu-gb.bluemix.net
 
+
      ```
      cf api https://api.ng.bluemix.net
      ```
@@ -145,9 +146,10 @@ The App requires three databases in your Cloudant service.
 
     In order for the app to be able to properly search this database, create a new search index and a new view in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
     ![NewSearchIndex](./images/new-search-index.png)
+
     Click **"New Search Index"** and configure the search index like this:
 
-    * **Design Document Name:**  SearchIdx
+    * **Design Document Name:**  BookIdx
     * **Index Name:**  titleSearch
     * **Code for the search index:**
         ```
@@ -156,11 +158,14 @@ The App requires three databases in your Cloudant service.
         }
         ```
 
-    ![SearchIndex](./images/searchIndex.png)
+    ![SearchIndex](./images/search-index.png)
 
-    Again, click the **"+"** sign next to "Design Documents", then click **"New View"** and configure the view like this:
+    Then, click the **"+"** sign next to "BookIdx", then click **"New View"**.
+    ![new-view](./images/new-view.png)
 
-    * **Design Document Name:**  SecIndex
+    Configure the view like this:
+
+    * **Design Document Name:**  BookIdx
     * **View Index Name:**  tagView
     * **Code for the view:**
       ```
@@ -171,7 +176,7 @@ The App requires three databases in your Cloudant service.
       }
       ```
 
-    ![View](./images/view.png)
+    ![View](./images/tag-view.png)
 
 2. Create a database called **"customers"**. A customer will be saved as a JSON in the following format:
 

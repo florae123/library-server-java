@@ -107,7 +107,7 @@ public class BookResource {
 	public List<Book> getRelevantBooks(@PathParam("tag") String tag){
 		initDatabase();
 		List<Book> list = null;
-		ViewRequestBuilder viewBuilder = datab.getViewRequestBuilder("SecIndex", "tagView");
+		ViewRequestBuilder viewBuilder = datab.getViewRequestBuilder("BookIdx", "tagView");
 		try {
 			ViewRequest<String, String> request = viewBuilder.newRequest(Key.Type.STRING,String.class).reduce(false)
 					  .keys(tag)
@@ -130,7 +130,7 @@ public class BookResource {
 	public List<Book> getBooksByTitle(@PathParam("title") String title){
 		initDatabase();
 		List<Book> list = null;
-		Search searchObject = datab.search("SearchIdx/titleSearch");
+		Search searchObject = datab.search("BookIdx/titleSearch");
 		list = searchObject.includeDocs(true).query(title, Book.class);
 		System.out.println(list);
 		return list;
