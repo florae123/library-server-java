@@ -23,6 +23,8 @@ Another requirement is an IBM Bluemix Account.
       ```
       git clone https://github.com/florae123/library-server-java.git
       ```
+
+    and change into the newly created directory *library-server-java*.
 2.  Execute full Maven build to create the target/name.war file:
 
       ```
@@ -35,6 +37,8 @@ Another requirement is an IBM Bluemix Account.
       * Choose **Select root directory** and your downloaded directory *library-server-java*.
       * Right-click your *library-server-java* project folder in Eclipse and select **Run As > Maven install**. The *.war* file will be created in the *target* directory.
           ![maven](./images/eclipse-maven-install.png)
+
+      Change into the directory *library-server-java* in your eclipse workspace directory. (This is where the target directory was created.)
 
 3.  Verify your "Bluemix endpoint api", for example
     * US https://api.ng.bluemix.net or
@@ -65,7 +69,8 @@ See [Configure Databases](#configure-databases).
 Create an instance of a cloudant database on Bluemix, in the same space you were using for the application.
       ![catalog](./images/catalog-cloudant.png)
 * Select **Cloudant NoSQL DB** in the Bluemix Catalog in your Browser, make sure the *Lite* pricing plan is selected and click **Create**. You will be directed to a view of the service.
-* To bind this DB to the java application, open the **Connections** panel, and click **Create Connection**. Then select the java library server and click **Connect**.
+* To bind this DB to the java application, open the **Connections** panel, and click **Create Connection**. Then select the java library server and click **Connect**. Restage the application when prompted.
+
     ![connect](./images/connect-cloudant.png)
 
     You do not need to integrate the service credentials of the Cloudant Service instance into your code to access your databases. By connecting the service to the cloud foundry application, the app's environment variables, the **VCAP_SERVICES**, will be updated. These VCAP_SERVICES are used in the java code to retrieve the service instance's credentials.
@@ -179,5 +184,8 @@ The App requires three databases in your Cloudant service.
 
     The text **"... Library Backend Server is running ..."** should be displayed in your browser.
 
-* To check the connection to the Cloudant Database, add **/api/books** to the url (e.g. **https://libraryserver-myname.eu-gb.mybluemix.net/api/books**).
-    You should see the books that were added to your *books* database as a json array.
+    ![test1](./images/test-app.png)
+
+* To check the connection to the Cloudant Database, add **/api/books** to the url (e.g. **https://libraryserver-myname.eu-gb.mybluemix.net/api/books**). You should see the books that were added to your *books* database as a json array.
+
+    ![test2](./images/test-app-cloudant.png)
