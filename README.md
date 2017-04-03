@@ -206,3 +206,12 @@ The App requires three databases in your Cloudant service.
         "end": "May 4, 2017 12:00:00 AM"
       }
       ```
+
+##Test your running application
+
+Open the server application you just deployed to Bluemix.
+
+The text **"... Library Backend Server is running ..."** should be displayed in your browser.
+
+To check the connection to the Cloudant Database, add **/api/books** to the url.
+You should see the books that were added to your *books* database as a json array.
