@@ -53,7 +53,7 @@ Another requirement is an IBM Bluemix Account.
 
 5. Push the app to Bluemix using the cf cli command
       ```
-      cf push MyName -p target/library-server-java.war
+      cf push library-server -p target/library-server-java.war
       ```
 6. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 See [Configure Databases](#configure-databases).
@@ -145,7 +145,7 @@ The App requires three databases in your Cloudant service.
     This is because the *"_rev"* attribute has to be excluded from new data that is added to a database. The Cloudant service will automatically generate the attribute-value pair *"_rev"*.
 
     In order for the app to be able to properly search this database, create a new search index and a new view in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
-    
+
     ![NewSearchIndex](./images/new-search-index.png)
 
     Click **"New Search Index"** and configure the search index like this:
