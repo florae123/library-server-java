@@ -193,3 +193,44 @@ The App requires three databases in your Cloudant service.
 * To check the connection to the Cloudant Database, add **/api/books** to the url (e.g. **https://libraryserver-myname.eu-gb.mybluemix.net/api/books**). You should see the books that were added to your *books* database as a json array.
 
     ![test2](./images/test-app-cloudant.png)
+
+
+## Build a toolchain
+The following steps are only available to applications deployed in the US region.
+
+1. Click on *Overview* for the library server app on Bluemix in your browser. Under **Continuous delivery**, click **Enable**.
+
+    ![enable](./images/enable-con-delivery.png)
+
+2. Name the toolchain and choose a new github repository to connect it to. Click **Create**.
+
+    ![create](./images/create-toolchain.png)
+
+3. Click the **Continuous delivery** icon.
+
+    ![](./images/delivery.png)
+
+4. For the first stage, the **Build Stage**, click **Configure Stage**. In the **JOBS** panel, change the **Builder Type** to **Maven**, the **Build Shell Command** to
+    ```
+    #!/bin/bash
+    mvn clean install
+    ```
+
+    and click **save**.
+
+    ![build-stage](./images/build-stage.png)
+
+5. For the next stage, the **Deploy Stage**, also click **Configure Stage**. Change the **Deploy Script** to
+
+    ```
+    #!/bin/bash
+    cf push "${CF_APP}" -p library-server-java.war
+
+    # View logs
+    # cf logs "${CF_APP}" --recent
+    ```  
+    and click **save**.
+
+    ![deploy-stage](./images/deploy-stage.png)
+
+6. Push the code into the new github repository and watch the automated deployment.
