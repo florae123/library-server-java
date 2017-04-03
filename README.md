@@ -37,16 +37,24 @@ Another requirement is an IBM Bluemix Account.
       * Right-click your *library-server-java* project folder in Eclipse and select **Run As > Maven install**. The *.war* file will be created in the *target* directory.
           ![maven](./images/eclipse-maven-install.png)
 
-3. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
+3.  Verify your "Bluemix endpoint api", for example
+    * US https://api.ng.bluemix.net or
+    * EU-GB https://api.eu-gb.bluemix.net
+
+     ```
+     cf api https://api.ng.bluemix.net
+     ```
+
+4. Log in to your Bluemix account using the Cloud Foundry CLI tool. Provide your username and password when prompted.
       ```
       cf login
       ```
 
-4. Push the app to Bluemix using the cf cli command
+5. Push the app to Bluemix using the cf cli command
       ```
       cf push MyName -p target/library-server-java.war
       ```
-5. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
+6. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 See [Configure Databases](#configure-databases).
 
 ## Deploy to Bluemix using Eclipse
@@ -135,12 +143,33 @@ The App requires three databases in your Cloudant service.
     There is no **"_rev"** attribute included in the sample json data.
     This is because the *"_rev"* attribute has to be excluded from new data that is added to a database. The Cloudant service will automatically generate the attribute-value pair *"_rev"*.
 
-    In order for the app to be able to properly search this database, create a new view and a new search index in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
+    In order for the app to be able to properly search this database, create a new search index and a new view in "books" by clicking the **"+"** sign next to "Design Documents" on the "books" database view in your Cloudant dashboard.
+    ![NewSearchIndex](./images/new-search-index.png)
     Click **"New Search Index"** and configure the search index like this:
+
+    * **Design Document Name:**  SearchIdx
+    * **Index Name:**  titleSearch
+    * **Code for the search index:**
+        ```
+        function (doc) {
+          index("default", doc.title);
+        }
+        ```
 
     ![SearchIndex](./images/searchIndex.png)
 
-    Then click **"New View"** and configure the view like this:
+    Again, click the **"+"** sign next to "Design Documents", then click **"New View"** and configure the view like this:
+
+    * **Design Document Name:**  SecIndex
+    * **View Index Name:**  tagView
+    * **Code for the view:**
+      ```
+      function (doc) {
+        var i;
+        for(i in doc.tags)
+           emit(doc.tags[i], doc._id);
+      }
+      ```
 
     ![View](./images/view.png)
 
