@@ -93,7 +93,7 @@ For every organization and space in Bluemix, one server is necessary. So, if you
 ## Configure Databases
 
 Create an instance of a cloudant database on Bluemix, in the same space you were using for the application.
-    ![catalog](./images/catalog-cloudant.png)
+      ![catalog](./images/catalog-cloudant.png)
 * Select **Cloudant NoSQL DB** in the Bluemix Catalog in your Browser, make sure the *Lite* pricing plan is selected and click **Create**. You will be directed to a view of the service.
 * To bind this DB to the java application, open the **Connections** panel, and click **Create Connection**. Then select the java library server and click **Connect**.
     ![connect](./images/connect-cloudant.png)
@@ -141,11 +141,12 @@ The App requires three databases in your Cloudant service.
 
     ![View](./images/view.png)
 
-2. Create a database called **"customers"**. A customer should be saved as a JSON in the following format:
+2. Create a database called **"customers"**. A customer will be saved as a JSON in the following format:
 
       ```
     	{
-    	  "_id": "the customer's id"
+    	  "_id": "the customer's id",
+        "_rev": "...",
     	  "name": "the customer's name",
     	  "email": "the customer's email address",
     	  "password": "the customer's password",
@@ -153,7 +154,7 @@ The App requires three databases in your Cloudant service.
     	}
       ```
 
-3. Create a database called **"rentals"**. Whenever a book is borrowed, it is registered in "rentals". A rental should be saved as a JSON in the following format:
+3. Create a database called **"rentals"**. Whenever a book is borrowed, it is registered in "rentals". A rental will be saved as a JSON in the following format:
 
       ```
       {
