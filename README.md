@@ -64,7 +64,7 @@ Another requirement is an IBM Bluemix Account.
 
       As soon as the application is running, test it by clicking on the url. (See [Test your running application](#test-your-running-application)).
 6. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
-See [Configure Databases](#configure-databases).
+See [Configure Databases](#configure-databases). When you are done, test the connection to the service. [Test your running application](#test-your-running-application).
 
 
 
