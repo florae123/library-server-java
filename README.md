@@ -60,7 +60,7 @@ Another requirement is an IBM Bluemix Account.
       cf push library-server -p target/library-server-java.war
       ```
 
-      Instead of *library-server* use your own unique name for the app.
+      Instead of *library-server*, use your own unique name for the app.
 6. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 See [Configure Databases](#configure-databases).
 
