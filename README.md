@@ -12,8 +12,7 @@ The software needed for the following steps:
 * Java SE 8 (JDK),
 * Eclipse Neon (another option is Maven),
 * Cloud Foundry Command Line Interface ([Download here](https://github.com/cloudfoundry/cli/releases)),
-* Git tool ([Download here](https://git-scm.com/downloads)),
-* IBM Eclipse tools for Bluemix (optional)
+* Git tool ([Download here](https://git-scm.com/downloads))
 
 Another requirement is an IBM Bluemix Account.
 
