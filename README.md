@@ -42,6 +42,7 @@ Another requirement is an IBM Bluemix Account.
     * EU-GB https://api.eu-gb.bluemix.net
 
 
+
      ```
      cf api https://api.ng.bluemix.net
      ```
@@ -58,46 +59,7 @@ Another requirement is an IBM Bluemix Account.
 6. Create an instance of the Cloudant NoSQL DB Service on Bluemix and connect it to your app.
 See [Configure Databases](#configure-databases).
 
-## Deploy to Bluemix using Eclipse
 
-### Install the Bluemix plugin
-
-To install the IBM Eclipse tools for Bluemix, launch Eclipse and click **Help > Eclipse Marketplace...**. Type *Bluemix* into the search panel and select **IBM Eclipse Tools for Bluemix for Neon**. Click **Install**, confirm the defaults, accept the license agreements and click **Finish**.
-
-### Configure a server
-
-To publish an Eclipse project to Bluemix, you will need to configure one or more servers in Eclipse.
-For every organization and space in Bluemix, one server is necessary. So, if you want to work with multiple spaces, you must create multiple server configurations.
-
-1. After launching Eclipse, select the Java EE perspective.
-
-2. Click **File > New > Other**, select the **Server** wizard and click **Next**.
-
-3. Select **IBM > IBM Bluemix** and name the server. Click **Next**.
-
-4. Enter the email and password for your Bluemix account. Select the URL matching the region you are using. Click **Validate Account** and then **Next**.
-
-5. Choose your organization and space and click **Finish**.
-
-6. Open the **Servers** view in Eclipse. You may need to click **Window > Show View > Servers**. You will now see your recently configured server.
-
-### Add the application to your workspace
-
-1. Clone the app to your local environment from your terminal using the following command
-
-  ```
-  git clone https://github.com/florae123/library-server-java.git
-  ```
-
-2. In Eclipse, click **File > Import**. Then select **General > Existing Projects into Workspace**. Click **Next**.
-
-3. Choose **Select root directory** and your downloaded directory *library-server-java*.
-
-### Deploy the application to Bluemix
-
-1. Right click on the  Bluemix Server, click **Add and Remove**. Select the *library-server-java* project from the *Available* column and click **Add**. Click **Finish**.
-
-2. Choose a unique name for you application and click **Finish**.
 
 ## Configure Databases
 
